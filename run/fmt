@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+call_prettier() {
+  if command -v prettier &> /dev/null; then
+    prettier "$@"
+  elif command -v pnpm &> /dev/null; then
+    pnpm dlx prettier "$@"
+  elif command -v yarn &> /dev/null; then
+    yarn dlx prettier "$@"
+  elif command -v npx &> /dev/null; then
+    npx prettier "$@"
+  else
+    echo "install prettier, pnpm, yarn, or npm." >&2
+    exit 1
+  fi
+}
+call_prettier -w "./*.{js,md}"

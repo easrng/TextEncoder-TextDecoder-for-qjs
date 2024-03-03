@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+git diff --no-index -a --  <(tail -n +2 test.js | node -) <(qjs test.js) && echo 'tests passed, polyfill on qjs is identical to native on node'
